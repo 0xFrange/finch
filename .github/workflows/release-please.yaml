@@ -2,7 +2,8 @@
 on:
   push:
     branches:
-      - main
+    - main
+  workflow_dispatch: {}
 name: release-please
 
 permissions:
@@ -19,8 +20,9 @@ jobs:
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
     steps:
-      - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
-        id: release
+    - uses: 
+        googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38       # v4.4.0
+      id: release
   trigger-release-automation:
     name: Trigger release-automation.yaml if PR is merged
     needs: [release-please]
